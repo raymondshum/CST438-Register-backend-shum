@@ -61,13 +61,14 @@ To test the backend integration:
         - REST will use HTTP methods to send requests between backend services.
 
 To test API routes:
-1. Run the following SQL script to prepare the registration and gradebook databases: [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql)
+1. Run <code>STEP 1</code> of the following SQL script to prepare the registration and gradebook databases: [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/integration_records.sql)
 2. Run the following routes on Postman:
     - <code>POST</code> http://localhost:8080/schedule?year=2021&semester=Fall
         - <code>BODY</code> is <code>JSON</code> format: <code> {"course_id" : 40443}   </code> 
+3. Run <code>STEP 3</code> of [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/integration_records.sql)
     - <code>POST</code> http://localhost:8081/course/40443/finalgrades
-3. Enrollment records should be updated in the enrollment tables for databases in both services after each route is contacted.
-4. To test again, rebuild the gradebook and register databases by rerunning the sql scripts:
+4. Enrollment records should be updated in the enrollment tables for databases in both services after each route is contacted.
+5. To test again, rebuild the gradebook and register databases by rerunning the sql scripts:
     - [db_register.sql](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql)
     - [db-gradebook.sql](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql)
 ---
@@ -97,13 +98,13 @@ To test API routes:
 - Implemented the following user story:
     - Add a button on the home page for add a new student with name, email.  Set the status code to 0.  Add a new route in App.js  
 - Requested code review on PR: [dev-week3](https://github.com/raymondshum/CST438-Register-frontend-shum/pull/1)
-- Delivered code review for PR: [PLACEHOLDER](#)
+- Delivered code review for PR: [dev](https://github.com/NStankovich/CST438-Gradebook-frontend-Stankovich/pull/1)
 
 
 ### Week 4, Assignment 4
 
 - Integrated gradebook and registration backends using RabbitMQ.
     - You can find my partner's (Nicholas Stankovich) gradebook backend repository here: [Link](https://github.com/NStankovich/CST438-Gradebook-backend-Stankovich/)
-- Requested code review on PR: [PLACEHOLDER](#)
+- Requested code review on PR: [dev-week4](https://github.com/raymondshum/CST438-Register-backend-shum/pull/2)
 - Delivered code review for PR: [PLACEHOLDER](#)
 ---
