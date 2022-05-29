@@ -78,9 +78,6 @@ public class EndToEndRegisterTest {
 					
 			// Find add student confirmation message
 			for(WebElement paragraph : paragraphs) {
-				// Confirmation page is one paragraph. Fail if messages are split between two paragraphs.
-				nameFound = false;
-				emailFound = false;
 				
 				String formattedParagraph = paragraph.getText().toUpperCase();
 				if (formattedParagraph.contains(emailMessage.toUpperCase())) {
