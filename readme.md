@@ -47,7 +47,7 @@ Steps:
 
 Steps:
 1. Set up the Registration Service backend (reference build instructions above).
-2. Set up the Gradbook Service backend using the same procedure. Repository here: (Link)[https://github.com/NStankovich/CST438-Gradebook-backend-Stankovich/] 
+2. Set up the Gradbook Service backend using the same procedure. Repository here: [Link](https://github.com/NStankovich/CST438-Gradebook-backend-Stankovich/) 
 3. Run the [db-gradebook.sql](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql) script to build the gradebook tables.
 4. Install [Erlang](https://www.erlang.org/downloads).
 5. Install [RabbitMQ](https://www.rabbitmq.com/download.html).
@@ -62,13 +62,14 @@ To test the backend integration:
 
 To test API routes:
 1. Run <code>STEP 1</code> of the following SQL script to prepare the registration and gradebook databases: [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/integration_records.sql)
-2. Run the following routes on Postman:
+2. Run the following route on Postman:
     - <code>POST</code> http://localhost:8080/schedule?year=2021&semester=Fall
         - <code>BODY</code> is <code>JSON</code> format: <code> {"course_id" : 40443}   </code> 
-3. Run <code>STEP 3</code> of [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/integration_records.sql)
+3. Run <code>STEP 3</code> of [integration-records](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/integration-records.sql)
+4. Run the following route on Postman:
     - <code>POST</code> http://localhost:8081/course/40443/finalgrades
-4. Enrollment records should be updated in the enrollment tables for databases in both services after each route is contacted.
-5. To test again, rebuild the gradebook and register databases by rerunning the sql scripts:
+5. Enrollment records should be updated in the enrollment tables for databases in both services after each route is contacted.
+6. To test again, rebuild the gradebook and register databases by rerunning the sql scripts:
     - [db_register.sql](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql)
     - [db-gradebook.sql](https://github.com/raymondshum/CST438-Register-backend-shum/blob/master/cst438_register/src/main/resources/db_register.sql)
 ---
@@ -106,5 +107,12 @@ To test API routes:
 - Integrated gradebook and registration backends using RabbitMQ.
     - You can find my partner's (Nicholas Stankovich) gradebook backend repository here: [Link](https://github.com/NStankovich/CST438-Gradebook-backend-Stankovich/)
 - Requested code review on PR: [dev-week4](https://github.com/raymondshum/CST438-Register-backend-shum/pull/2)
-- Delivered code review for PR: [PLACEHOLDER](#)
+- Delivered code review for PR: [PLACEHOLDER](https://github.com/NStankovich/CST438-Gradebook-backend-Stankovich/pull/4)
+
+### Week 5, Assignment 5
+
+- Implemented end to end test that tests the following user story:
+    - (Registration Service) As an Admin I can add a new student to the registration service.
+- Requested code review on PR: [dev-week5](#)
+- Delivered code review on PR: [PLACEHOLDER](#)
 ---
