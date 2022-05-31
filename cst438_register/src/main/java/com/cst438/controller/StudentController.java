@@ -4,6 +4,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.cst438.domain.Admin;
+import com.cst438.domain.AdminRepository;
 import com.cst438.domain.Student;
 import com.cst438.domain.StudentDTO;
 import com.cst438.domain.StudentRepository;
@@ -25,8 +29,12 @@ public class StudentController {
 	@Autowired
 	StudentRepository studentRepository;
 	
+	@Autowired
+	AdminRepository adminRepository;
+	
 	@GetMapping("/student")
-	public StudentDTO getStudent( @RequestParam("email") String email) {
+	public StudentDTO getStudent(@AuthenticationPrincipal OAuth2User principal) {
+		String email = principal.getAttribute("email");
 		Student student = studentRepository.findByEmail(email);
 		
 		if(student == null) {
@@ -43,7 +51,14 @@ public class StudentController {
 	 */
 	@PostMapping("/student")
 	@Transactional
-	public StudentDTO addStudent( @RequestBody StudentDTO newStudentDTO) {
+	public StudentDTO addStudent( @RequestBody StudentDTO newStudentDTO, @AuthenticationPrincipal OAuth2User principal) {
+		String email = principal.getAttribute("email");
+		Admin admin = adminRepository.findByEmail(email);
+		
+		if(admin == null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not an admin: " + email);
+		}
+		
 		Student student = studentRepository.findByEmail(newStudentDTO.studentEmail);
 		
 		if(student != null) {
@@ -62,7 +77,14 @@ public class StudentController {
 	 */
 	@PutMapping("/student/hold/{id}")
 	@Transactional
-	public void holdStudent( @PathVariable(value="id") int id) {
+	public void holdStudent( @PathVariable(value="id") int id, @AuthenticationPrincipal OAuth2User principal) {
+		String email = principal.getAttribute("email");
+		Admin admin = adminRepository.findByEmail(email);
+		
+		if(admin == null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not an admin: " + email);
+		}
+		
 		Student student = studentRepository.findById(id);
 		
 		if(student == null) {
@@ -78,7 +100,14 @@ public class StudentController {
 	 * USER STORY(3/3): "As an administrator, I can release the HOLD on student registration."
 	 */
 	@PutMapping("/student/release/{id}")
-	public void releaseStudent( @PathVariable(value="id") int id) {
+	public void releaseStudent( @PathVariable(value="id") int id, @AuthenticationPrincipal OAuth2User principal) {
+		String email = principal.getAttribute("email");
+		Admin admin = adminRepository.findByEmail(email);
+		
+		if(admin == null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not an admin: " + email);
+		}
+		
 		Student student = studentRepository.findById(id);
 		
 		if(student == null) {
