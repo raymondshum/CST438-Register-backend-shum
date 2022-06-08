@@ -88,7 +88,8 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` VALUES 
 (1,'test','test@csumb.edu',NULL,0),
-(2,'david','dwisneski@csumb.edu',NULL,0);
+(2,'david','dwisneski@csumb.edu',NULL,0),
+(3, 'STUDENT', 'STUDENT_EMAIL@gmail.com',NULL,0);
 
 DROP TABLE IF EXISTS `enrollment`; 
 CREATE TABLE `enrollment` (
@@ -104,3 +105,13 @@ CREATE TABLE `enrollment` (
   CONSTRAINT `FKbhhcqkw1px6yljqg92m0sh2gt` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
   CONSTRAINT `FKio7fsy3vhvfgv7c0gjk15nyk4` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
 )  ;
+
+DROP TABLE IF EXISTS `admin`; 
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`admin_id`)
+)  ;
+
+INSERT INTO `admin` VALUES 
+(1,'ADMIN_EMAIL@gmail.com');
